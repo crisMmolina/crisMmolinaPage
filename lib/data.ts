@@ -141,7 +141,8 @@ export type GrupoStack = {
   clave: string;
   titulo: string;
   nota: string;
-  items: { nombre: string; nota: string }[];
+  /** `logo` referencia un trazo de lib/logos.ts o uno de linea en Logo.tsx. */
+  items: { nombre: string; nota: string; logo: string }[];
 };
 
 export const stack: GrupoStack[] = [
@@ -150,11 +151,11 @@ export const stack: GrupoStack[] = [
     titulo: "Lenguajes",
     nota: "Base del trabajo diario",
     items: [
-      { nombre: "JavaScript", nota: "Lenguaje principal" },
-      { nombre: "TypeScript", nota: "Tipado en producto" },
-      { nombre: "Python", nota: "Datos e IA aplicada" },
-      { nombre: "Java", nota: "Fundamentos y POO" },
-      { nombre: "C", nota: "Sistemas y algoritmia" },
+      { nombre: "JavaScript", nota: "Lenguaje principal", logo: "javascript" },
+      { nombre: "TypeScript", nota: "Tipado en producto", logo: "typescript" },
+      { nombre: "Python", nota: "Datos e IA aplicada", logo: "python" },
+      { nombre: "Java", nota: "Fundamentos y POO", logo: "java" },
+      { nombre: "C", nota: "Sistemas y algoritmia", logo: "c" },
     ],
   },
   {
@@ -162,12 +163,12 @@ export const stack: GrupoStack[] = [
     titulo: "Desarrollo web",
     nota: "Interfaz y servidor",
     items: [
-      { nombre: "React", nota: "Interfaces de producto" },
-      { nombre: "Vite", nota: "Entorno de construcción" },
-      { nombre: "Node.js", nota: "Servicios y API" },
-      { nombre: "HTML5", nota: "Estructura semántica" },
-      { nombre: "CSS3", nota: "Sistemas de estilo" },
-      { nombre: "Bootstrap", nota: "Prototipado rápido" },
+      { nombre: "React", nota: "Interfaces de producto", logo: "react" },
+      { nombre: "Vite", nota: "Entorno de construcción", logo: "vite" },
+      { nombre: "Node.js", nota: "Servicios y API", logo: "node" },
+      { nombre: "HTML5", nota: "Estructura semántica", logo: "html5" },
+      { nombre: "CSS3", nota: "Sistemas de estilo", logo: "css3" },
+      { nombre: "Bootstrap", nota: "Prototipado rápido", logo: "bootstrap" },
     ],
   },
   {
@@ -175,9 +176,9 @@ export const stack: GrupoStack[] = [
     titulo: "Bases de datos",
     nota: "Persistencia y consulta",
     items: [
-      { nombre: "MySQL", nota: "Modelado relacional" },
-      { nombre: "Oracle Database", nota: "Consulta y administración" },
-      { nombre: "Neon", nota: "Postgres serverless" },
+      { nombre: "MySQL", nota: "Modelado relacional", logo: "cilindro" },
+      { nombre: "Oracle Database", nota: "Consulta y administración", logo: "capas" },
+      { nombre: "Neon", nota: "Postgres serverless", logo: "neon" },
     ],
   },
   {
@@ -185,12 +186,12 @@ export const stack: GrupoStack[] = [
     titulo: "Herramientas y proceso",
     nota: "Despliegue y colaboración",
     items: [
-      { nombre: "Git", nota: "Control de versiones" },
-      { nombre: "GitHub", nota: "Colaboración y revisión" },
-      { nombre: "Vercel", nota: "Despliegue continuo" },
-      { nombre: "Cloudflare", nota: "Red y dominios" },
-      { nombre: "Render", nota: "Servicios gestionados" },
-      { nombre: "SCRUM", nota: "Trabajo en equipo" },
+      { nombre: "Git", nota: "Control de versiones", logo: "git" },
+      { nombre: "GitHub", nota: "Colaboración y revisión", logo: "github" },
+      { nombre: "Vercel", nota: "Despliegue continuo", logo: "vercel" },
+      { nombre: "Cloudflare", nota: "Red y dominios", logo: "cloudflare" },
+      { nombre: "Render", nota: "Servicios gestionados", logo: "render" },
+      { nombre: "SCRUM", nota: "Trabajo en equipo", logo: "ciclo" },
     ],
   },
 ];

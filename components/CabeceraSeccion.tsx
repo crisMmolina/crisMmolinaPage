@@ -1,16 +1,13 @@
 type Props = {
-  indice: string;
   titulo: string;
   nota?: string;
 };
 
-/** Etiqueta monoespaciada + titulo, en la columna izquierda de la rejilla. */
-export default function CabeceraSeccion({ indice, titulo, nota }: Props) {
+/** Titulo de seccion en la columna izquierda de la rejilla editorial. */
+export default function CabeceraSeccion({ titulo, nota }: Props) {
   return (
     <div className="lg:sticky lg:top-16 lg:self-start">
-      <p className="t-label" style={{ ["--i" as string]: 0 }}>
-        {indice} — {titulo}
-      </p>
+      <p className="t-label">{titulo}</p>
       {nota ? (
         <p className="t-meta mt-3 max-w-[13rem] leading-relaxed text-[var(--color-ash-dim)]">
           {nota}

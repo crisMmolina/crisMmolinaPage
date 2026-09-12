@@ -9,7 +9,6 @@ export default function Perfil() {
 
       <div className="grid-editorial">
         <CabeceraSeccion
-          indice="01"
           titulo="Perfil"
           nota="Quién soy y dónde me estoy formando."
         />

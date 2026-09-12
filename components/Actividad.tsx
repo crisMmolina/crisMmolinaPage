@@ -2,36 +2,33 @@ import { Fragment } from "react";
 import CabeceraSeccion from "./CabeceraSeccion";
 import Reveal from "./Reveal";
 import GrafoContribuciones from "./GrafoContribuciones";
-import { IconoSalida } from "./Icons";
-import {
-  formatearFecha,
-  obtenerActividad,
-  obtenerRepos,
-  repartoDeLenguajes,
-} from "@/lib/github";
+import { formatearFecha, obtenerActividad, obtenerLenguajes } from "@/lib/github";
 import { perfil } from "@/lib/data";
 
 const TONOS_LENGUAJE = [
-  "rgba(201,180,146,0.95)",
-  "rgba(201,180,146,0.70)",
-  "rgba(201,180,146,0.48)",
-  "rgba(201,180,146,0.30)",
-  "rgba(237,233,225,0.14)",
+  "rgb(215,197,166)",
+  "rgba(201,180,146,0.74)",
+  "rgba(201,180,146,0.52)",
+  "rgba(201,180,146,0.34)",
+  "rgba(237,233,225,0.18)",
+  "rgba(237,233,225,0.10)",
 ];
 
 export default async function Actividad() {
-  const [actividad, repos] = await Promise.all([
+  const [actividad, lenguajes] = await Promise.all([
     obtenerActividad(),
-    obtenerRepos(),
+    obtenerLenguajes(),
   ]);
 
-  const lenguajes = repartoDeLenguajes(repos).slice(0, 5);
+  const principales = lenguajes.slice(0, 5);
+  const resto = lenguajes.slice(5);
+  const porcentajeResto =
+    Math.round(resto.reduce((a, l) => a + l.porcentaje, 0) * 10) / 10;
 
   const metricas: { valor: string; etiqueta: string; extra?: string }[] = [
     { valor: String(actividad?.total ?? "—"), etiqueta: "Contribuciones", extra: "12 m" },
     { valor: String(actividad?.diasActivos ?? "—"), etiqueta: "Días con commits" },
     { valor: String(actividad?.mejorRacha ?? "—"), etiqueta: "Racha más larga" },
-    { valor: String(repos.length || "—"), etiqueta: "Repositorios", extra: "públicos" },
   ];
 
   return (
@@ -40,9 +37,8 @@ export default async function Actividad() {
 
       <div className="grid-editorial">
         <CabeceraSeccion
-          indice="04"
           titulo="Actividad"
-          nota="Historial de commits leído en vivo desde la API de GitHub."
+          nota="Historial de commits leído en vivo desde GitHub."
         />
 
         <Reveal>
@@ -53,7 +49,7 @@ export default async function Actividad() {
 
           {/* metricas */}
           <div
-            className="mt-14 grid grid-cols-2 border-t border-l border-[var(--line)] lg:grid-cols-4"
+            className="mt-14 grid grid-cols-1 border-t border-l border-[var(--line)] sm:grid-cols-3"
             style={{ ["--i" as string]: 1 }}
           >
             {metricas.map((m) => (
@@ -95,7 +91,7 @@ export default async function Actividad() {
                 href={perfil.github}
                 target="_blank"
                 rel="noreferrer noopener"
-                className="link-wipe text-[var(--color-bone)]"
+                className="link-wipe inline-block text-[var(--color-bone)]"
               >
                 Consultarlo en GitHub
               </a>
@@ -103,23 +99,32 @@ export default async function Actividad() {
           )}
 
           {/* reparto de lenguajes */}
-          {lenguajes.length > 0 ? (
+          {principales.length > 0 ? (
             <div className="mt-16" style={{ ["--i" as string]: 3 }}>
-              <p className="t-label mb-5">Lenguajes por repositorio</p>
+              <p className="t-label mb-5">Lenguajes por volumen de código</p>
               <div className="flex h-[6px] w-full overflow-hidden">
-                {lenguajes.map((l, i) => (
+                {principales.map((l, i) => (
                   <span
                     key={l.nombre}
                     className="block h-full"
                     style={{
                       width: `${l.porcentaje}%`,
-                      backgroundColor: TONOS_LENGUAJE[i] ?? TONOS_LENGUAJE[4],
+                      backgroundColor: TONOS_LENGUAJE[i],
                     }}
                   />
                 ))}
+                {porcentajeResto > 0 ? (
+                  <span
+                    className="block h-full"
+                    style={{
+                      width: `${porcentajeResto}%`,
+                      backgroundColor: TONOS_LENGUAJE[5],
+                    }}
+                  />
+                ) : null}
               </div>
               <p className="t-meta mt-4 leading-[2.1] text-[var(--color-ash)]">
-                {lenguajes.map((l, i) => (
+                {principales.map((l, i) => (
                   <Fragment key={l.nombre}>
                     {i > 0 ? (
                       <span className="mx-3 text-[var(--color-ash-dim)]"> · </span>
@@ -128,55 +133,13 @@ export default async function Actividad() {
                       <span
                         aria-hidden
                         className="mr-2 inline-block h-[7px] w-[7px] translate-y-[-1px]"
-                        style={{
-                          backgroundColor: TONOS_LENGUAJE[i] ?? TONOS_LENGUAJE[4],
-                        }}
+                        style={{ backgroundColor: TONOS_LENGUAJE[i] }}
                       />
                       {l.nombre} {l.porcentaje}%
                     </span>
                   </Fragment>
                 ))}
               </p>
-            </div>
-          ) : null}
-
-          {/* indice de repositorios */}
-          {repos.length > 0 ? (
-            <div className="mt-16" style={{ ["--i" as string]: 4 }}>
-              <div className="mb-6 flex flex-wrap items-baseline justify-between gap-3">
-                <p className="t-label">Repositorios públicos</p>
-                <a
-                  href={perfil.github}
-                  target="_blank"
-                  rel="noreferrer noopener"
-                  className="link-wipe t-meta inline-flex items-center gap-2 text-[var(--color-ash)] hover:text-[var(--color-bone)]"
-                >
-                  Ver perfil
-                  <IconoSalida />
-                </a>
-              </div>
-
-              <div className="border-t border-[var(--line)]">
-                {repos.map((repo) => (
-                  <a
-                    key={repo.nombre}
-                    href={repo.url}
-                    target="_blank"
-                    rel="noreferrer noopener"
-                    className="group grid grid-cols-12 items-baseline gap-x-6 gap-y-1 border-b border-[var(--line)] py-4 transition-colors duration-[400ms] hover:bg-[var(--color-ink-raised)]"
-                  >
-                    <span className="col-span-12 text-[0.92rem] font-medium tracking-[-0.012em] text-[var(--color-bone)] transition-colors duration-300 group-hover:text-[var(--color-sand-soft)] sm:col-span-5">
-                      {repo.nombre}
-                    </span>
-                    <span className="t-meta col-span-6 text-[var(--color-ash-dim)] sm:col-span-4">
-                      {repo.lenguaje ?? "—"}
-                    </span>
-                    <span className="t-meta col-span-6 text-right text-[var(--color-ash-dim)] sm:col-span-3">
-                      {formatearFecha(repo.actualizado)}
-                    </span>
-                  </a>
-                ))}
-              </div>
             </div>
           ) : null}
         </Reveal>

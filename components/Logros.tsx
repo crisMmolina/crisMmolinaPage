@@ -9,7 +9,6 @@ export default function Logros() {
 
       <div className="grid-editorial">
         <CabeceraSeccion
-          indice="02"
           titulo="Logros"
           nota="Competencias de desarrollo resueltas en equipo, con entrega funcional."
         />

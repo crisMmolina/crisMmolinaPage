@@ -10,9 +10,8 @@ export default function Proyectos() {
 
       <div className="grid-editorial">
         <CabeceraSeccion
-          indice="03"
           titulo="Proyectos"
-          nota="Plataformas en producción, con enlace público."
+          nota="Plataformas construidas en competencia y llevadas a despliegue."
         />
 
         <Reveal>
@@ -70,28 +69,19 @@ export default function Proyectos() {
                       ))}
                     </p>
 
-                    <div className="mt-9 flex flex-wrap items-center gap-x-8 gap-y-3">
-                      <a
-                        href={p.url}
-                        target="_blank"
-                        rel="noreferrer noopener"
-                        className="link-wipe inline-flex items-center gap-2 text-sm text-[var(--color-bone)]"
-                      >
-                        Ver en vivo
-                        <IconoSalida className="text-[var(--color-sand)]" />
-                      </a>
-                      {p.repo ? (
+                    {p.repo ? (
+                      <div className="mt-9">
                         <a
                           href={p.repo}
                           target="_blank"
                           rel="noreferrer noopener"
-                          className="link-wipe inline-flex items-center gap-2 text-sm text-[var(--color-ash)] hover:text-[var(--color-bone)]"
+                          className="link-wipe inline-flex items-center gap-2 text-sm text-[var(--color-bone)]"
                         >
                           Código
-                          <IconoSalida />
+                          <IconoSalida className="text-[var(--color-sand)]" />
                         </a>
-                      ) : null}
-                    </div>
+                      </div>
+                    ) : null}
                   </div>
                 </div>
               </article>

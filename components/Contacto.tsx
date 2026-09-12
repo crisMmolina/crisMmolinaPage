@@ -23,7 +23,7 @@ export default function Contacto() {
 
         <Reveal>
           <p className="t-label" style={{ ["--i" as string]: 0 }}>
-            06 — Contacto
+            Contacto
           </p>
 
           <h2

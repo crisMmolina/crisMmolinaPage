@@ -1,5 +1,6 @@
 import CabeceraSeccion from "./CabeceraSeccion";
 import Reveal from "./Reveal";
+import Logo from "./Logo";
 import { stack } from "@/lib/data";
 
 export default function Stack() {
@@ -9,7 +10,6 @@ export default function Stack() {
 
       <div className="grid-editorial">
         <CabeceraSeccion
-          indice="05"
           titulo="Stack"
           nota="Herramientas que uso, con el papel que cumplen."
         />
@@ -37,13 +37,18 @@ export default function Stack() {
                   </span>
                 </div>
 
-                <div className="grid grid-cols-1 border-t border-l border-[var(--line)] sm:grid-cols-2 lg:grid-cols-3">
+                <div className="grid grid-cols-2 border-t border-l border-[var(--line)] lg:grid-cols-3">
                   {grupo.items.map((item) => (
                     <div
                       key={item.nombre}
-                      className="group border-r border-b border-[var(--line)] px-5 py-5 transition-colors duration-500 hover:bg-[var(--color-ink-raised)]"
+                      className="group border-r border-b border-[var(--line)] px-5 pt-6 pb-5 transition-colors duration-500 hover:bg-[var(--color-ink-raised)]"
                     >
-                      <p className="text-[0.94rem] font-medium tracking-[-0.012em] text-[var(--color-bone)] transition-colors duration-300 group-hover:text-[var(--color-sand-soft)]">
+                      <Logo
+                        nombre={item.logo}
+                        etiqueta={item.nombre}
+                        className="h-[26px] w-[26px] text-[var(--color-ash)] transition-all duration-500 ease-[cubic-bezier(0.22,1,0.36,1)] group-hover:-translate-y-0.5 group-hover:text-[var(--color-sand)]"
+                      />
+                      <p className="mt-5 text-[0.94rem] font-medium tracking-[-0.012em] text-[var(--color-bone)] transition-colors duration-300 group-hover:text-[var(--color-sand-soft)]">
                         {item.nombre}
                       </p>
                       <p className="t-meta mt-1.5 text-[var(--color-ash-dim)]">
