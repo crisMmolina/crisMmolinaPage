@@ -1,4 +1,3 @@
-import Reloj from "./Reloj";
 import { IconoFlechaAbajo, IconoGithub, IconoLinkedin, IconoCorreo } from "./Icons";
 import { perfil } from "@/lib/data";
 
@@ -31,32 +30,12 @@ export default function Hero() {
         }}
       />
 
-      <div className="shell relative z-10 flex flex-1 flex-col justify-between">
-        {/* fila superior */}
-        <div className="flex items-start justify-between gap-6">
-          <p className="t-label enter whitespace-nowrap" style={{ ["--i" as string]: 0 }}>
-            <span className="sm:hidden">CDMX, MX</span>
-            <span className="hidden sm:inline">{perfil.ubicacion}</span>
-            <span className="mx-2 text-[var(--line)]">/</span>
-            <Reloj />
-          </p>
-          <p
-            className="t-label enter whitespace-nowrap text-right"
-            style={{ ["--i" as string]: 1 }}
-          >
-            <span className="hidden sm:inline">
-              Portafolio
-              <span className="mx-2 text-[var(--line)]">/</span>
-            </span>
-            2026
-          </p>
-        </div>
-
+      <div className="shell relative z-10 flex flex-1 flex-col">
         {/* bloque central */}
-        <div className="py-14">
+        <div className="my-auto py-14">
           <p
             className="t-label enter mb-5 text-[var(--color-sand)]"
-            style={{ ["--i" as string]: 2 }}
+            style={{ ["--i" as string]: 0 }}
           >
             Ingeniería en Informática — IPN UPIICSA
           </p>
@@ -64,13 +43,13 @@ export default function Hero() {
           <h1 className="t-display">
             <span
               className="enter block"
-              style={{ ["--i" as string]: 3 }}
+              style={{ ["--i" as string]: 1 }}
             >
               {perfil.nombreLinea1}
             </span>
             <span
               className="enter block text-[var(--color-ash)]"
-              style={{ ["--i" as string]: 4 }}
+              style={{ ["--i" as string]: 2 }}
             >
               {perfil.nombreLinea2}
             </span>
@@ -78,13 +57,13 @@ export default function Hero() {
 
           <div
             className="rule rule-entra mt-10 mb-8"
-            style={{ ["--i" as string]: 6 }}
+            style={{ ["--i" as string]: 3 }}
           />
 
           <div className="grid gap-8 md:grid-cols-12">
             <p
               className="t-lead enter md:col-span-7 lg:col-span-6"
-              style={{ ["--i" as string]: 6 }}
+              style={{ ["--i" as string]: 3 }}
             >
               Construyo software{" "}
               <span className="t-serif text-[var(--color-sand-soft)]">
@@ -97,7 +76,7 @@ export default function Hero() {
 
             <div
               className="enter flex flex-wrap items-end gap-x-7 gap-y-3 self-end md:col-span-5 md:justify-end lg:col-span-6"
-              style={{ ["--i" as string]: 7 }}
+              style={{ ["--i" as string]: 4 }}
             >
               <EnlaceSocial href={perfil.github} etiqueta="GitHub">
                 <IconoGithub />
@@ -117,14 +96,14 @@ export default function Hero() {
           <a
             href="#perfil"
             className="enter t-label group flex items-center gap-3 transition-colors duration-300 hover:text-[var(--color-bone)]"
-            style={{ ["--i" as string]: 8 }}
+            style={{ ["--i" as string]: 5 }}
           >
             <IconoFlechaAbajo className="transition-transform duration-500 ease-[cubic-bezier(0.22,1,0.36,1)] group-hover:translate-y-1" />
             Desplazar
           </a>
           <p
             className="enter t-label hidden text-right sm:block"
-            style={{ ["--i" as string]: 9 }}
+            style={{ ["--i" as string]: 6 }}
           >
             Cuatro primeros lugares en hackathon
           </p>
