@@ -64,7 +64,16 @@ export default function RootLayout({
       lang="es"
       className={`${GeistSans.variable} ${GeistMono.variable} ${instrumentSerif.variable}`}
     >
-      <body>{children}</body>
+      <body>
+        <noscript>
+          <style>{`
+            .reveal > *, .enter { opacity: 1 !important; animation: none !important; }
+            .reveal-rule, .rule-entra { transform: none !important; animation: none !important; }
+            .grafo .celda { opacity: 1 !important; transform: none !important; }
+          `}</style>
+        </noscript>
+        {children}
+      </body>
     </html>
   );
 }

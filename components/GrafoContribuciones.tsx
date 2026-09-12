@@ -24,9 +24,13 @@ export default function GrafoContribuciones({ datos }: { datos: Actividad }) {
   return (
     <figure className="no-rise m-0 min-w-0">
       <div className="zona-scroll -mx-[var(--gutter)] overflow-x-auto px-[var(--gutter)] pb-2 lg:mx-0 lg:px-0">
-        <div className="grafo inline-block min-w-max">
+        <div
+          className="grafo inline-block min-w-max"
+          role="img"
+          aria-label={`Historial de commits: ${datos.total} contribuciones en los últimos 12 meses, repartidas en ${datos.diasActivos} días con actividad.`}
+        >
           {/* etiquetas de mes */}
-          <div className="relative mb-2 ml-9 h-4">
+          <div aria-hidden className="relative mb-2 ml-9 h-4">
             {datos.etiquetasMes.map((etiqueta) => (
               <span
                 key={`${etiqueta.texto}-${etiqueta.indiceSemana}`}
@@ -38,7 +42,7 @@ export default function GrafoContribuciones({ datos }: { datos: Actividad }) {
             ))}
           </div>
 
-          <div className="flex gap-[3px]">
+          <div aria-hidden className="flex gap-[3px]">
             {/* dias de la semana */}
             <div className="mr-1.5 flex w-[26px] shrink-0 flex-col gap-[3px]">
               {DIAS_SEMANA.map((dia, i) => (
